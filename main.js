@@ -1,6 +1,6 @@
 let searchedArray = []
-let apiUrlForSubmissions = "https://api.pushshift.io/reddit/search/submission/?size=10000&sort=desc&sort_type=score&filter=selftext,title,num_comments,score,url,author,created_utc"
-let apiUrlForComments = "https://api.pushshift.io/reddit/search/comment/?size=10000&sort=desc&sort_type=score&filter=body,score,permalink,author,created_utc"
+let apiUrlForSubmissions = "https://api.pushshift.io/reddit/search/submission/?size=10000&sort=desc&sort_type=created_utc&filter=selftext,title,num_comments,score,url,author,created_utc"
+let apiUrlForComments = "https://api.pushshift.io/reddit/search/comment/?size=10000&sort=desc&sort_type=created_utc&filter=body,score,permalink,author,created_utc"
 const form = document.querySelector('form')
 form.addEventListener('submit', event => {
     event.preventDefault();
@@ -23,12 +23,7 @@ function apiUrlBuilder() {
         apiUrlForSubmissions += "&author=" + user;
         apiUrlForComments += "&author=" + user;
     }
-    requestApi(apiUrlForSubmissions)
-    /*Http.onreadystatechange=(e)=>{
-        let responseObject = Http.response
-        console.log(responseObject)
-        console.log(responseData)
-    }*/
+    requestApi(apiUrlForComments)
 }
 
 function requestApi(url) {
@@ -47,5 +42,34 @@ function requestApi(url) {
 }
 
 function showResponse(data) {
-    
+    let resultDiv = document.querySelector('.result')
+    for (let i = 0; i < data.length; i++) {
+        // Source to convert unix time https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
+        let date = new Date(data[i]['created_utc'] * 1000)
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        let year = date.getFullYear()
+        let month = months[date.getMonth()]
+        let day = date.getDate()
+        let hour = date.getHours()
+        let min = date.getMinutes()
+        let sec = date.getSeconds()
+        let time = day + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec
+        
+        let linkBox = document.createElement('a')
+        linkBox.href = "https://www.reddit.com/" + data[i]['permalink']
+        let authorLink = document.createElement('a')
+        authorLink.href = "https://old.reddit.com/user/" + data[i]['author']
+        let authorText = document.createTextNode(data[i]['author'])
+        authorLink.appendChild(authorText)
+        linkBox.appendChild(authorLink)
+        let titleP = document.createElement('p')
+        let titleText = document.createTextNode(data[i]['score'] + " points  " + time)
+        titleP.appendChild(titleText)
+        linkBox.appendChild(titleP)
+        let bodyP = document.createElement('p')
+        let bodyText = document.createTextNode(data[i]['body'])
+        bodyP.appendChild(bodyText)
+        linkBox.appendChild(bodyP)
+        resultDiv.appendChild(linkBox)
+    }
 }
