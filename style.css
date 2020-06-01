@@ -12,12 +12,49 @@ form{
 }
 input {
     float: right;
+    width: 70%;
+}
+@media (max-width:900px) {
+    input {
+        width: 60%;
+    }
+}
+@media (max-width:650px) {
+    input {
+        width: 55%;
+    }
+}
+@media (max-width:575px) {
+    input {
+        width: 50%;
+    }
+}
+@media (max-width:525px) {
+    input {
+        float: left;
+        width: 90%;
+    }
 }
 button {
     width: 49%;
     background-color: #faebd7;
     height: 35px;
     border-radius: 5px;
+    margin-top: 5px;
+}
+@media (max-width:525px) {
+    button {
+        width: 48%;
+    }
+}
+.result {
+    margin: auto;
+    width: 75%;
+}
+@media (max-width: 800px) {
+    .result {
+        width: 95%;
+    }
 }
 .resultBox {
     padding: 5px;
