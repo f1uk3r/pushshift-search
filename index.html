@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <form action="POST" id="pushshift-search">
-        <label for="search-term">Search Term: <input type="text" id="search-term" name="search-term"></label><br />
-        <label for="subreddit">Subreddit: <input type="text" id="subreddit" name="subreddit"></label><br />
-        <label for="user">User: <input type="text" id="user" name="user"></label><br />
-        <button class="submit-button">Submit</button>
-    </form>
+    <div class="search-box">
+        <form action="POST" id="pushshift-search">
+            
+            <label for="search-term">Search Term: <input type="text" id="search-term" name="search-term" size="50"></label><br /><br />
+            <label for="subreddit">Subreddit: <input type="text" id="subreddit" name="subreddit" placeholder="all" size="50"></label><br /><br />
+            <label for="user">User: <input type="text" id="user" name="user" placeholder="all" size="50"></label><br /><br />
+            <button class="submit-button">Submit</button>
+        </form>
+
+    </div>
 
     <script src="main.js" type="text/javascript"></script>
 </body>
