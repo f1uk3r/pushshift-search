@@ -13,8 +13,8 @@ form{
 input {
     float: right;
 }
-.submit-button {
-    width: 100%;
+button {
+    width: 49%;
     background-color: #faebd7;
     height: 35px;
     border-radius: 5px;
@@ -34,4 +34,7 @@ a>p {
 }
 a {
     text-decoration: none;
+}
+.submission-title {
+    color: blue;
 }
