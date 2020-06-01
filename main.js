@@ -55,11 +55,14 @@ function showResponse(data) {
         let sec = date.getSeconds()
         let time = day + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec
         
+        let singleResultDiv = document.createElement('div')
+        singleResultDiv.className = "resultBox"
         let linkBox = document.createElement('a')
         linkBox.href = "https://www.reddit.com/" + data[i]['permalink']
         let authorLink = document.createElement('a')
         authorLink.href = "https://old.reddit.com/user/" + data[i]['author']
         let authorText = document.createTextNode(data[i]['author'])
+        authorLink.className = "username"
         authorLink.appendChild(authorText)
         linkBox.appendChild(authorLink)
         let titleP = document.createElement('p')
@@ -70,6 +73,7 @@ function showResponse(data) {
         let bodyText = document.createTextNode(data[i]['body'])
         bodyP.appendChild(bodyText)
         linkBox.appendChild(bodyP)
-        resultDiv.appendChild(linkBox)
+        singleResultDiv.appendChild(linkBox)
+        resultDiv.appendChild(singleResultDiv)
     }
 }
