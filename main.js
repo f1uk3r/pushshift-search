@@ -103,7 +103,7 @@ function showResponse(data, postOrComment) {
         }
         else  {
             let linkBox = document.createElement('a')
-            linkBox.href = "https://www.reddit.com/" + data[i]['url']
+            linkBox.href = data[i]['url']
             let authorLink = document.createElement('a')
             authorLink.href = "https://old.reddit.com/user/" + data[i]['author']
             let authorText = document.createTextNode(data[i]['author'])
